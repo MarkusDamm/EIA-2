@@ -1,0 +1,77 @@
+html{
+    background-image: url("../images/tisch.jpg")
+}
+body+h1{
+    position: absolute;
+    left: 30px;
+    top: 0px;
+}
+
+h1+h1{
+    position: absolute;
+    right: 30px;
+    top: 0px;
+}
+
+#Nachzieh{
+    position: absolute;
+    top: 70px;
+    left: 30px;
+    height: 300px;
+    border-radius: 4%;
+    -webkit-border-radius: 4%;
+    -moz-border-radius: 4%;
+    -ms-border-radius: 4%;
+    -o-border-radius: 4%;
+}
+
+#Ablage{
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    height: 300px;
+    border-radius: 4%;
+    -webkit-border-radius: 4%;
+    -moz-border-radius: 4%;
+    -ms-border-radius: 4%;
+    -o-border-radius: 4%;
+}
+
+body>div{
+    position: absolute;
+    top: 420px;
+    left: 0px;
+    width: 99%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div>div{
+    margin: 20px;
+    padding: 10px;
+    position: relative;
+    width: 180px;
+    height: 300px;
+    text-align: center;
+    box-shadow: 4px 4px 10px #0f0f0f;
+    border-radius: 4%;
+    -webkit-border-radius: 4%;
+    -moz-border-radius: 4%;
+    -ms-border-radius: 4%;
+    -o-border-radius: 4%;
+}
+
+.Eichel{
+    background-color: green;
+}
+.Blatt{
+    background-color: rgb(0, 83, 0);
+}
+.Schellen{
+    background-color: rgb(255, 123, 0);
+}
+.Herz{
+    background-color: rgb(185, 0, 0);
+}
