@@ -1,3 +1,4 @@
+namespace Aufgabe02{
 interface Karte {
     farbe: string;
     wert: string;
@@ -38,3 +39,4 @@ function kartenAusgeben(_handkarten: number): void {
 }
 
 kartenAusgeben(kartenZiehen());
+}
