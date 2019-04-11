@@ -1,4 +1,4 @@
-namespace Aufgabe03{
+namespace Aufgabe03 {
 interface Karte {
     farbe: string;
     wert: string;
@@ -15,34 +15,61 @@ let ziehStapel: Karte[] = [{farbe: "Eichel", wert: "7", id: 1}, {farbe: "Blatt",
 {farbe: "Eichel", wert: "Ass", id: 8}, {farbe: "Blatt", wert: "Ass", id: 16}, {farbe: "Herz", wert: "Ass", id: 24}, {farbe: "Schellen", wert: "Ass", id: 32} ];
 
 let handKarten: Karte[] = [];
+let ablageStapel: Karte[] = [];
 let neueKarte: string = "";
+let zähler: number = 0;
 
-function kartenAnzahl(): void {
+function kartenAnzahl (): void {
     let mengeAngeben: string = prompt("Wie viele Karten sollen gezogen werden?");
     let anzahl: number = Number(mengeAngeben);
-    //return anzahl;
-    if (anzahl < 0 || anzahl > 32) {
+    if (anzahl < 1 || anzahl > 32) {
         console.log( `Es sind maximal ${ziehStapel.length} Karten vorhanden` );
         kartenAnzahl();
     }
     else {
-        for (let i = 0; i < anzahl; i++) {
-            karteAusgeben(anzahl);       
+        for (let i: number = 0; i < anzahl; i++) {
+            karteAusgeben(anzahl, i);  
+            zähler = i;     
         }
+        zähler++;
     }
 }
 
-function karteAusgeben(_handkarte: number): void {
-    for (let i: number = 0; i < _handkarte; i++) {
-        let zufall: number = Math.floor((Math.random() * ziehStapel.length) );
-        console.log(ziehStapel[zufall]);
-        handKarten.push(ziehStapel[zufall]);
-        ziehStapel.splice(zufall, 1);
-        neueKarte += `<div class="${handKarten[i].farbe}"> ${handKarten[i].farbe} ${handKarten[i].wert} </div> `;
-    }
-    console.log(neueKarte);
+function karteAusgeben(_handkarte: number , _zähler: number): void {
+    
+    let zufall: number = Math.floor((Math.random() * ziehStapel.length) );
+    handKarten.push(ziehStapel[zufall]);
+    ziehStapel.splice(zufall, 1);
+    neueKarte += `<div class="${handKarten[_zähler].farbe}" id="${handKarten[_zähler].id}"> ${handKarten[_zähler].farbe} ${handKarten[_zähler].wert} </div> `;
     document.getElementById("Handkarten").innerHTML = neueKarte; 
 }
 
+function weitereKarte(_event: Event): void {
+    if (_event.type == "click") {
+        karteAusgeben(1, zähler++);
+    }
+    
+}
+
+function kartenSortieren (): void {
+    handKarten.sort(function (a: Karte, b: Karte ): number {
+        return a.id - b.id;        
+        }
+    );
+    //Array wird sortiert, aber HTML nicht umgeschrieben
+}
+
+document.getElementById("Nachzieh").addEventListener("click", weitereKarte);
+document.getElementById("Button").addEventListener("click", kartenSortieren);
+
+
+
+document.addEventListener("keydown", weitereKarte);
+/*
+function handleKeydown(_event: Event): void {
+    if (_event. == )
+    console.log(_event);
+}
+*/
 kartenAnzahl();
 }
