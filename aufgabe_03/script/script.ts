@@ -19,6 +19,10 @@ let ablageStapel: Karte[] = [];
 let neueKarte: string = "";
 let zähler: number = 0;
 
+document.getElementById("Nachzieh").addEventListener("click", weitereKarteKlick);
+document.getElementById("Button").addEventListener("click", kartenSortieren);
+document.addEventListener("keydown", weitereKarteLeer);
+
 function kartenAnzahl (): void {
     let mengeAngeben: string = prompt("Wie viele Karten sollen gezogen werden?");
     let anzahl: number = Number(mengeAngeben);
@@ -67,10 +71,24 @@ function kartenAnzeigen(): void {
     for (let i: number = 0; i < handKarten.length; i++) {  
         document.getElementById(handKarten[i].id.toString()).addEventListener("click", karteAblegen);
     }
+    if (ablageStapel.length > 0) {
+        let abgelegt: string = `<div class="${ablageStapel[ablageStapel.length - 1].farbe}" id="${ablageStapel[ablageStapel.length - 1].id}"> ${ablageStapel[ablageStapel.length - 1].farbe} ${ablageStapel[ablageStapel.length - 1].wert} </div> `;
+        document.getElementById("Ablage").innerHTML = abgelegt;
+    }
 }
 
-function karteAblegen(_event: MouseEvent): void {
-    console.log(_event.target + " abgelegt werden!");
+function karteAblegen(_event: Event): void {
+    let domCard: HTMLElement = <HTMLElement>_event.target;
+    console.log(domCard);
+    for (let i: number = 0; i < handKarten.length; i++) {
+        if (handKarten[i].id == Number(domCard.id)) {
+            console.log (handKarten[i].id);
+            ablageStapel.push(handKarten[i]);
+            handKarten.splice(i, 1);
+            kartenAnzeigen();
+        }
+        
+    }
     
 }
 
@@ -83,9 +101,6 @@ function kartenSortieren (): void {
 }
 
 
-document.getElementById("Nachzieh").addEventListener("click", weitereKarteKlick);
-document.getElementById("Button").addEventListener("click", kartenSortieren);
-document.addEventListener("keydown", weitereKarteLeer);
 /*
 function handleKeydown(_event: Event): void {
     if (_event. == )

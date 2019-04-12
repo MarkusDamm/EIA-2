@@ -24,7 +24,7 @@ button{
 
 #Nachzieh{
     position: absolute;
-    top: 70px;
+    top: 50px;
     left: 30px;
     height: 300px;
     border-radius: 8%;
@@ -36,17 +36,33 @@ button{
 
 #Ablage{
     position: absolute;
-    top: 70px;
-    right: 30px;
+    top: 50px;
+    right: 50px;
     height: 300px;
+    width: 200px;
     border-radius: 8%;
     -webkit-border-radius: 8%;
     -moz-border-radius: 8%;
     -ms-border-radius: 8%;
     -o-border-radius: 8%;
+    z-index: 1;
 }
 
-body>div{
+#Ablage>div{
+    margin: 20px;
+    padding: 10px;
+    width: 180px;
+    height: 300px;
+    text-align: center;
+    box-shadow: 4px 4px 10px #0f0f0f;
+    border-radius: 4%;
+    -webkit-border-radius: 4%;
+    -moz-border-radius: 4%;
+    -ms-border-radius: 4%;
+    -o-border-radius: 4%;
+}
+
+#Handkarten{
     position: absolute;
     top: 420px;
     left: 0px;
