@@ -28,27 +28,50 @@ function kartenAnzahl (): void {
     }
     else {
         for (let i: number = 0; i < anzahl; i++) {
-            karteAusgeben(anzahl, i);  
+            karteAusgeben(anzahl);  
             zähler = i;     
         }
         zähler++;
     }
 }
 
-function karteAusgeben(_handkarte: number , _zähler: number): void {
-    
-    let zufall: number = Math.floor((Math.random() * ziehStapel.length) );
-    handKarten.push(ziehStapel[zufall]);
-    ziehStapel.splice(zufall, 1);
-    neueKarte += `<div class="${handKarten[_zähler].farbe}" id="${handKarten[_zähler].id}"> ${handKarten[_zähler].farbe} ${handKarten[_zähler].wert} </div> `;
-    document.getElementById("Handkarten").innerHTML = neueKarte; 
+function karteAusgeben(_handkarte: number): void {
+    if (ziehStapel.length < 1) 
+        alert("Keine Karten mehr im Ziehstapel. :(");
+    else {
+        let zufall: number = Math.floor((Math.random() * ziehStapel.length) );
+        handKarten.push(ziehStapel[zufall]);
+        ziehStapel.splice(zufall, 1);
+        kartenAnzeigen();
+    }
 }
 
-function weitereKarte(_event: Event): void {
+function weitereKarteKlick(_event: Event): void {
     if (_event.type == "click") {
-        karteAusgeben(1, zähler++);
+        karteAusgeben(1);
     }
-    
+}
+
+function weitereKarteLeer(_event: KeyboardEvent): void {
+    if (_event.keyCode == 32) {
+        karteAusgeben(1);
+
+    }
+}
+
+function kartenAnzeigen(): void {
+    neueKarte = "";
+    for (let i: number = 0; i < handKarten.length; i++) 
+        neueKarte += `<div class="${handKarten[i].farbe}" id="${handKarten[i].id}"> ${handKarten[i].farbe} ${handKarten[i].wert} </div> `;
+    document.getElementById("Handkarten").innerHTML = neueKarte; 
+    //for (let i = 0; i < 32; i++) {    Fehler durch diese Schleife
+    //    document.getElementById(i.toString()).addEventListener("click", karteAblegen);
+    //    console.log("ID:${i} bekommt ein EventListener!")
+    //}
+}
+
+function karteAblegen(): void {
+    console.log("Es soll eine Karte abgelegt werden!")
 }
 
 function kartenSortieren (): void {
@@ -56,15 +79,16 @@ function kartenSortieren (): void {
         return a.id - b.id;        
         }
     );
-    //Array wird sortiert, aber HTML nicht umgeschrieben
+    kartenAnzeigen();
 }
 
-document.getElementById("Nachzieh").addEventListener("click", weitereKarte);
+
+
+
+
+document.getElementById("Nachzieh").addEventListener("click", weitereKarteKlick);
 document.getElementById("Button").addEventListener("click", kartenSortieren);
-
-
-
-document.addEventListener("keydown", weitereKarte);
+document.addEventListener("keydown", weitereKarteLeer);
 /*
 function handleKeydown(_event: Event): void {
     if (_event. == )
