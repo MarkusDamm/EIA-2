@@ -52,13 +52,12 @@ var Aufgabe03;
         for (let i = 0; i < handKarten.length; i++)
             neueKarte += `<div class="${handKarten[i].farbe}" id="${handKarten[i].id}"> ${handKarten[i].farbe} ${handKarten[i].wert} </div> `;
         document.getElementById("Handkarten").innerHTML = neueKarte;
-        //for (let i = 0; i < 32; i++) {    Fehler durch diese Schleife
-        //    document.getElementById(i.toString()).addEventListener("click", karteAblegen);
-        //    console.log("ID:${i} bekommt ein EventListener!")
-        //}
+        for (let i = 0; i < handKarten.length; i++) {
+            document.getElementById(handKarten[i].id.toString()).addEventListener("click", karteAblegen);
+        }
     }
-    function karteAblegen() {
-        console.log("Es soll eine Karte abgelegt werden!");
+    function karteAblegen(_event) {
+        console.log(_event.target + " abgelegt werden!");
     }
     function kartenSortieren() {
         handKarten.sort(function (a, b) {
