@@ -64,10 +64,10 @@ var Aufgabe03;
         }
     }
     function karteAblegen(_event) {
-        let domCard = _event.target;
-        console.log(domCard);
+        let geklickteKarte = _event.target;
+        console.log(geklickteKarte);
         for (let i = 0; i < handKarten.length; i++) {
-            if (handKarten[i].id == Number(domCard.id)) {
+            if (handKarten[i].id == Number(geklickteKarte.id)) {
                 console.log(handKarten[i].id);
                 ablageStapel.push(handKarten[i]);
                 handKarten.splice(i, 1);
@@ -81,12 +81,6 @@ var Aufgabe03;
         });
         kartenAnzeigen();
     }
-    /*
-    function handleKeydown(_event: Event): void {
-        if (_event. == )
-        console.log(_event);
-    }
-    */
     kartenAnzahl();
 })(Aufgabe03 || (Aufgabe03 = {}));
 //# sourceMappingURL=script.js.map
