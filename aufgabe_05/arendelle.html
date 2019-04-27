@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <img src="" alt="Logo">
+        <img src="./images/logo.png" alt="Logo">
         <h1>Arendelle</h1>
         <output name="bestellung" id="bestellung">Ihre Bestellung beinhaltet: ...</output>
         <output name="preis" id="preis">00,00 €</output>
@@ -52,36 +52,37 @@
     <footer>
         <fieldset id="Lieferoptionen">
             <legend>Lieferoptionen</legend>
-            <input type="radio" name="Lieferung" value="liefer1">                
+            <input type="radio" name="Lieferung" value="liefer1" id="liefer1">                
             <label for="liefer1">Selbstabholung</label> <br>
             <input type="radio" name="Lieferung" value="liefer2" id="liefer2">
             <label for="liefer2">Expresslieferung (50 ct Aufpreis)</label> <br>
-            <input type="radio" name="Lieferung" value="liefer3">
+            <input type="radio" name="Lieferung" value="liefer3" id="liefer3">
             <label for="liefer3">Halb-geschmolzen-Lieferung</label>
         </fieldset>
         <fieldset>
             <legend>Benutzerdaten</legend>
             <p> 
                 Benutzername
-		        <input type="text" name="Text" placeholder="Benutzername" required/>
+		        <input type="text" name="Login" placeholder="Benutzername" value="" required/>
             </p><p>
 		        Passwort
-		        <input type="password" name="Passwort" placeholder="Passwort" required/>
+		        <input type="password" name="Login" placeholder="Passwort" value="" required/>
             </p><p>
 		        Mail
-		        <input type="email" name="Mail" placeholder="max.musterdivers@email.com"/>
+		        <input type="email" name="Mail" placeholder="max.musterdivers@email.com" value=""/>
             </p><p>
                 Straße, Hausnummer
-		        <input type="text" name="Anschrift" placeholder="Schillerstr. 8" required/>
+		        <input type="text" name="Adresse" placeholder="Schillerstr. 8" value="" required/>
             </P><p>
 		        Ort
-		        <input type="text" name="Ort" placeholder="Ort" required/>
+		        <input type="text" name="Adresse" placeholder="Ort" value="" required/>
             </p><p>
                 Postleitzahl 
-		        <input type="text" name="PLZ" pattern="[0-9]{5}" placeholder="PLZ" required/>
+		        <input type="text" name="Adresse" pattern="[0-9]{5}" placeholder="PLZ" value="" required/>
             </p>
         </fieldset>
     </footer>
     <script src="./script/script.js"></script>
+    <script src="./script/data.js"></script>
 </body>
 </html>

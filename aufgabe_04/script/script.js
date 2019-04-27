@@ -58,19 +58,16 @@ var A4;
                 bestellung += ziel.name + "</br>";
             }
         }
-        if (document.getElementById("liefer2").checked == true) { //.checked funktioniert trotzdem, Alternative nicht bekannt
+        if (document.getElementById("liefer2").checked == true) //.checked funktioniert trotzdem, Alternative nicht bekannt
             bestellung += "Expresslieferung";
-        }
         document.getElementById("bestellung").innerHTML = bestellung;
     }
     function pruefen() {
         console.log("Daten werden geprüft");
-        if (document.getElementById("bestellung").innerHTML == "Ihre Bestellung beinhaltet: ...") {
+        if (document.getElementById("bestellung").innerHTML == "Ihre Bestellung beinhaltet: ...")
             alert("Bitte stellen Sie Ihr Wunscheis zusammen.");
-        }
-        else if (document.getElementsByName("Behaelter")[0].checked == false && document.getElementsByName("Behaelter")[1].checked == false) { //wie Z.63
+        else if (document.getElementsByName("Behaelter")[0].checked == false && document.getElementsByName("Behaelter")[1].checked == false) //wie Z.63
             alert("Bitte einen Behäter auswählen.");
-        }
     }
 })(A4 || (A4 = {}));
 //# sourceMappingURL=script.js.map

@@ -8,8 +8,32 @@ namespace A5 {
     let bestellung: string;
     let ziel: HTMLInputElement;
 
+    export interface CooleDaten {
+        coolerName: string;
+        cooleMenge: number;
+    }
+    export interface EisDaten {
+        [key: string]: CooleDaten[];
+    }
+
     document.addEventListener("change", veraenderung);
-    document.getElementById("button").addEventListener("click", pruefen)
+    document.getElementById("button").addEventListener("click", pruefen);
+
+    function seiteLaden(): void {
+        console.log("Funktion Seite Laden");
+        //let stringEissorten: string;
+        //let stringZusaetze: string;
+        for (let key in alleDaten) {    //Wird scheinbar nicht ausgeführt, ist aber notwendig für Aufgabe
+            let eisKeys: CooleDaten[] = alleDaten[key];
+            console.log("All work and no Play");
+            console.group(key);
+            console.dir(eisKeys);
+            console.groupEnd();
+
+        }
+
+    }
+
 
     function veraenderung(_event: Event): void {
         ziel = <HTMLInputElement>_event.target;
@@ -69,5 +93,14 @@ namespace A5 {
             alert("Bitte stellen Sie Ihr Wunscheis zusammen.");
         else if (document.getElementsByName("Behaelter")[0].checked == false && document.getElementsByName("Behaelter")[1].checked == false) //wie Z.63
             alert("Bitte einen Behäter auswählen.");
+        else if (document.getElementsByName("Lieferung")[0].checked == false && document.getElementsByName("Lieferung")[1].checked == false && document.getElementsByName("Lieferung")[2].checked == false) 
+            alert("Bitte eine Lieferoption wählen.");
+        else if (document.getElementsByName("Login")[0].value == "" || document.getElementsByName("Login")[1].value == "")
+            alert("Bitte Benutzername und Passwort eingeben.");
+        else if (document.getElementsByName("Adresse")[0].value == "" || document.getElementsByName("Adresse")[1].value == "" || document.getElementsByName("Adresse")[2].value == "")
+            alert("Bitte Ihre Adresse eingeben.");   
+        else alert("Daten wurden gesendet :D ");
     }
+
+    seiteLaden();
 }

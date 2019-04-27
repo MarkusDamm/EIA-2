@@ -1,5 +1,5 @@
-var A4;
-(function (A4) {
+var A5;
+(function (A5) {
     let preis;
     let preisKugel = 0;
     let preisZusatz = 0;
@@ -10,6 +10,18 @@ var A4;
     let ziel;
     document.addEventListener("change", veraenderung);
     document.getElementById("button").addEventListener("click", pruefen);
+    function seiteLaden() {
+        console.log("Funktion Seite Laden");
+        //let stringEissorten: string;
+        //let stringZusaetze: string;
+        for (let key in A5.alleDaten) { //Wird scheinbar nicht ausgeführt, ist aber notwendig für Aufgabe
+            let eisKeys = A5.alleDaten[key];
+            console.log("All work and no Play");
+            console.group(key);
+            console.dir(eisKeys);
+            console.groupEnd();
+        }
+    }
     function veraenderung(_event) {
         ziel = _event.target;
         bestellung = "Ihre Bestellung beinhaltet: </br>";
@@ -58,19 +70,25 @@ var A4;
                 bestellung += ziel.name + "</br>";
             }
         }
-        if (document.getElementById("liefer2").checked == true) { //.checked funktioniert trotzdem, Alternative nicht bekannt
+        if (document.getElementById("liefer2").checked == true) //.checked funktioniert trotzdem, Alternative nicht bekannt
             bestellung += "Expresslieferung";
-        }
         document.getElementById("bestellung").innerHTML = bestellung;
     }
     function pruefen() {
         console.log("Daten werden geprüft");
-        if (document.getElementById("bestellung").innerHTML == "Ihre Bestellung beinhaltet: ...") {
+        if (document.getElementById("bestellung").innerHTML == "Ihre Bestellung beinhaltet: ...")
             alert("Bitte stellen Sie Ihr Wunscheis zusammen.");
-        }
-        else if (document.getElementsByName("Behaelter")[0].checked == false && document.getElementsByName("Behaelter")[1].checked == false) { //wie Z.63
+        else if (document.getElementsByName("Behaelter")[0].checked == false && document.getElementsByName("Behaelter")[1].checked == false) //wie Z.63
             alert("Bitte einen Behäter auswählen.");
-        }
+        else if (document.getElementsByName("Lieferung")[0].checked == false && document.getElementsByName("Lieferung")[1].checked == false && document.getElementsByName("Lieferung")[2].checked == false)
+            alert("Bitte eine Lieferoption wählen.");
+        else if (document.getElementsByName("Login")[0].value == "" || document.getElementsByName("Login")[1].value == "")
+            alert("Bitte Benutzername und Passwort eingeben.");
+        else if (document.getElementsByName("Adresse")[0].value == "" || document.getElementsByName("Adresse")[1].value == "" || document.getElementsByName("Adresse")[2].value == "")
+            alert("Bitte Ihre Adresse eingeben.");
+        else
+            alert("Daten wurden gesendet :D ");
     }
-})(A4 || (A4 = {}));
+    seiteLaden();
+})(A5 || (A5 = {}));
 //# sourceMappingURL=script.js.map
