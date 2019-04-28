@@ -3,14 +3,14 @@ namespace A5 {
     let preisKugel: number = 0;
     let preisZusatz: number = 0;
     let preisLieferung: number = 0;
-    let kugeln: string[] = ["Vanille", "Schoko", "Erdbeere", "Kaugummi"]
-    let zusatz: string[] = ["Schokosoße", "Streußel", "Sahne", "Smarties"]
+    let kugeln: string[] = [];
+    let zusatz: string[] = [];
     let bestellung: string;
     let ziel: HTMLInputElement;
 
     export interface CooleDaten {
         coolerName: string;
-        cooleMenge: number;
+        cooleMenge: number; //wird noch nicht genutzt, vll. in Preis umbenennen
     }
     export interface EisDaten {
         [key: string]: CooleDaten[];
@@ -21,17 +21,30 @@ namespace A5 {
 
     function seiteLaden(): void {
         console.log("Funktion Seite Laden");
-        //let stringEissorten: string;
-        //let stringZusaetze: string;
-        for (let key in alleDaten) {    //Wird scheinbar nicht ausgeführt, ist aber notwendig für Aufgabe
+        let stringEissorten: string = "";
+        let stringZusaetze: string = "";
+        for (let key in alleDaten) {    
             let eisKeys: CooleDaten[] = alleDaten[key];
-            console.log("All work and no Play");
+            /*
             console.group(key);
             console.dir(eisKeys);
             console.groupEnd();
-
+            */
+            for (let i: number = 0; i < eisKeys.length; i++) {
+                if (key == "Zusätze") {
+                    zusatz.push(eisKeys[i].coolerName); 
+                    stringZusaetze += `${eisKeys[i].coolerName}
+                    <input type="checkbox" name="${eisKeys[i].coolerName}" id="${eisKeys[i].coolerName}" value="check${i + 1}" id="check${i + 1}"> <br>`;
+                }
+                else if (key == "Eissorten") {
+                    kugeln.push(eisKeys[i].coolerName);
+                    stringEissorten += `${eisKeys[i].coolerName}
+                    <input type="number" name="${eisKeys[i].coolerName}" id="${eisKeys[i].coolerName}" step="1" min="0" max="10" value="0"> <br>`;
+                }
+            }
         }
-
+        document.getElementById("Eissorten").innerHTML += stringEissorten;
+        document.getElementById("Zusätze").innerHTML += stringZusaetze;
     }
 
 
@@ -44,9 +57,10 @@ namespace A5 {
             preisKugel = 0;
             for (let i: number = 0; i < kugeln.length; i++) {
                 ziel = document.getElementById(kugeln[i]); //Habe versucht den Fehler mit einer Variable vom Typ HTMLElement zu beheben, gibt dann aber einen anderen Fehler aus :/
+                //console.log(ziel);
                 if (Number(ziel.value) > 10) 
                     ziel.value = "10";              
-                preisKugel += Number(ziel.value) * 0.6;
+                preisKugel += Number(ziel.value) * 0.7;
                 }
             }
         if (ziel.type == "checkbox") {
@@ -68,25 +82,23 @@ namespace A5 {
         document.getElementById("preis").innerHTML = preis.toFixed(2) + "€";
         bestellungAnzeigen();
     }
+
     function bestellungAnzeigen(): void {
         for (let i: number = 0; i < kugeln.length; i++) {
             ziel = document.getElementById(kugeln[i]); 
-            if (Number(ziel.value) > 0) {
-                if (Number(ziel.value) > 10)  
-                    ziel.value = "10";          //vielleicht unnötig (da Z.23 + 24)
+            if (Number(ziel.value) > 0)
                 bestellung += ziel.value + " Kugel(n) " + ziel.name + "</br>";
-            }
         }
         for (let i: number = 0; i < zusatz.length; i++) {
             ziel = document.getElementById(zusatz[i]);
-            if (ziel.checked == true) {
+            if (ziel.checked == true) 
                 bestellung += ziel.name + "</br>";
-            }      
         }
         if (document.getElementById("liefer2").checked == true) //.checked funktioniert trotzdem, Alternative nicht bekannt
             bestellung += "Expresslieferung";
         document.getElementById("bestellung").innerHTML = bestellung;
     }
+    
     function pruefen (): void {
         console.log("Daten werden geprüft");
         if (document.getElementById("bestellung").innerHTML == "Ihre Bestellung beinhaltet: ...")

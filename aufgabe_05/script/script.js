@@ -4,23 +4,38 @@ var A5;
     let preisKugel = 0;
     let preisZusatz = 0;
     let preisLieferung = 0;
-    let kugeln = ["Vanille", "Schoko", "Erdbeere", "Kaugummi"];
-    let zusatz = ["Schokosoße", "Streußel", "Sahne", "Smarties"];
+    let kugeln = [];
+    let zusatz = [];
     let bestellung;
     let ziel;
     document.addEventListener("change", veraenderung);
     document.getElementById("button").addEventListener("click", pruefen);
     function seiteLaden() {
         console.log("Funktion Seite Laden");
-        //let stringEissorten: string;
-        //let stringZusaetze: string;
-        for (let key in A5.alleDaten) { //Wird scheinbar nicht ausgeführt, ist aber notwendig für Aufgabe
+        let stringEissorten = "";
+        let stringZusaetze = "";
+        for (let key in A5.alleDaten) {
             let eisKeys = A5.alleDaten[key];
-            console.log("All work and no Play");
+            /*
             console.group(key);
             console.dir(eisKeys);
             console.groupEnd();
+            */
+            for (let i = 0; i < eisKeys.length; i++) {
+                if (key == "Zusätze") {
+                    zusatz.push(eisKeys[i].coolerName);
+                    stringZusaetze += `${eisKeys[i].coolerName}
+                    <input type="checkbox" name="${eisKeys[i].coolerName}" id="${eisKeys[i].coolerName}" value="check${i + 1}" id="check${i + 1}"> <br>`;
+                }
+                else if (key == "Eissorten") {
+                    kugeln.push(eisKeys[i].coolerName);
+                    stringEissorten += `${eisKeys[i].coolerName}
+                    <input type="number" name="${eisKeys[i].coolerName}" id="${eisKeys[i].coolerName}" step="1" min="0" max="10" value="0"> <br>`;
+                }
+            }
         }
+        document.getElementById("Eissorten").innerHTML += stringEissorten;
+        document.getElementById("Zusätze").innerHTML += stringZusaetze;
     }
     function veraenderung(_event) {
         ziel = _event.target;
@@ -31,9 +46,10 @@ var A5;
             preisKugel = 0;
             for (let i = 0; i < kugeln.length; i++) {
                 ziel = document.getElementById(kugeln[i]); //Habe versucht den Fehler mit einer Variable vom Typ HTMLElement zu beheben, gibt dann aber einen anderen Fehler aus :/
+                //console.log(ziel);
                 if (Number(ziel.value) > 10)
                     ziel.value = "10";
-                preisKugel += Number(ziel.value) * 0.6;
+                preisKugel += Number(ziel.value) * 0.7;
             }
         }
         if (ziel.type == "checkbox") {
@@ -58,17 +74,13 @@ var A5;
     function bestellungAnzeigen() {
         for (let i = 0; i < kugeln.length; i++) {
             ziel = document.getElementById(kugeln[i]);
-            if (Number(ziel.value) > 0) {
-                if (Number(ziel.value) > 10)
-                    ziel.value = "10"; //vielleicht unnötig (da Z.23 + 24)
+            if (Number(ziel.value) > 0)
                 bestellung += ziel.value + " Kugel(n) " + ziel.name + "</br>";
-            }
         }
         for (let i = 0; i < zusatz.length; i++) {
             ziel = document.getElementById(zusatz[i]);
-            if (ziel.checked == true) {
+            if (ziel.checked == true)
                 bestellung += ziel.name + "</br>";
-            }
         }
         if (document.getElementById("liefer2").checked == true) //.checked funktioniert trotzdem, Alternative nicht bekannt
             bestellung += "Expresslieferung";

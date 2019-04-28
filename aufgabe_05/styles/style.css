@@ -9,9 +9,6 @@ header {
     background: orange;
     margin-bottom: 8px;
 }
-header>image {
-    width: 10px;
-}
 h1 {
     font-size: 2rem;
     position: absolute;
