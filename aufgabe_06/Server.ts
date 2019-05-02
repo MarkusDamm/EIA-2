@@ -1,3 +1,4 @@
+//Markus Damm, MKB2-B
 import * as Http from "http";
 //Kreiert ein Http-Objekt und hängt dann alle möglichen Importe im http-Modul an das Http-Objekt
 namespace L05_Server {	
