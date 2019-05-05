@@ -16,16 +16,16 @@
         <h1>Arendelle</h1>
         <output name="bestellung" id="bestellung">Ihre Bestellung beinhaltet: ...</output>
         <output name="preis" id="preis">00,00 €</output>
-        <button id="button" type="submit">Bestellen</button>
+        <button id="button" type="submit">Bestellung Prüfen</button>
     </header>
 
     <main>
         <form action="https://fuwa-eia2.herokuapp.com/" method="get">
             <fieldset>
                 <legend>Behälter</legend>
-                <input type="radio" name="Behaelter" value="radio1" id="radio1" />
+                <input type="radio" name="Behaelter" value="waffel" id="radio1" />
                 <label for="radio1">Waffel</label>
-                <input type="radio" name="Behaelter" value="radio2" id="radio2" />
+                <input type="radio" name="Behaelter" value="becher" id="radio2" />
                 <label for="radio2">Becher</label>
             </fieldset>
             <fieldset id="Eissorten">
@@ -41,13 +41,14 @@
     <footer>
         <fieldset id="Lieferoptionen">
             <legend>Lieferoptionen</legend>
-            <input type="radio" name="Lieferung" value="liefer1" id="liefer1">
+            <input type="radio" name="Lieferung" value="selbst" id="liefer1">
             <label for="liefer1">Selbstabholung</label> <br>
-            <input type="radio" name="Lieferung" value="liefer2" id="liefer2">
+            <input type="radio" name="Lieferung" value="schnell" id="liefer2">
             <label for="liefer2">Expresslieferung (50 ct Aufpreis)</label> <br>
-            <input type="radio" name="Lieferung" value="liefer3" id="liefer3">
+            <input type="radio" name="Lieferung" value="geschmolzen" id="liefer3">
             <label for="liefer3">Halb-geschmolzen-Lieferung</label>
         </fieldset>
+        <button type="submit">Bestellen</button>
         </form>
         <fieldset>
             <legend>Benutzerdaten</legend>

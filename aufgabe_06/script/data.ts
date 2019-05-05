@@ -1,5 +1,15 @@
-namespace A5 {
+namespace A6 {
+    export interface CooleDaten {
+        coolerName: string;
+        cooleMenge: number; //wird noch nicht genutzt, vll. in Preis umbenennen
+    }
+    
+    export interface EisDaten {
+        [key: string]: CooleDaten[];
+    }
+
     export let alleDaten: EisDaten;
+    
     alleDaten = {
         "Eissorten": [
             {coolerName: "Vanille", cooleMenge: 0},
@@ -8,8 +18,8 @@ namespace A5 {
             {coolerName: "Kaugummi", cooleMenge: 0}
         ],
         "Zusätze": [
-            {coolerName: "Schokosoße", cooleMenge: 0},
-            {coolerName: "Streußel", cooleMenge: 0},
+            {coolerName: "Honig", cooleMenge: 0},
+            {coolerName: "Kirschen", cooleMenge: 0},
             {coolerName: "Sahne", cooleMenge: 0},
             {coolerName: "Smarties", cooleMenge: 0}
         ]

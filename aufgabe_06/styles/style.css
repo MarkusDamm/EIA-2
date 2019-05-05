@@ -32,6 +32,12 @@ h1 {
     right: 20px;
     font-size: 1.2rem;
 }
+footer>button{
+    position: fixed;
+    top: 150px;
+    right: 20px;
+    font-size: 1.2rem;
+}
 main {
     background: lightblue;
     margin: 238px 0 8px 0;

@@ -1,6 +1,6 @@
-var A5;
-(function (A5) {
-    A5.alleDaten = {
+var A6;
+(function (A6) {
+    A6.alleDaten = {
         "Eissorten": [
             { coolerName: "Vanille", cooleMenge: 0 },
             { coolerName: "Schokolade", cooleMenge: 0 },
@@ -8,11 +8,11 @@ var A5;
             { coolerName: "Kaugummi", cooleMenge: 0 }
         ],
         "Zusätze": [
-            { coolerName: "Schokosoße", cooleMenge: 0 },
-            { coolerName: "Streußel", cooleMenge: 0 },
+            { coolerName: "Honig", cooleMenge: 0 },
+            { coolerName: "Kirschen", cooleMenge: 0 },
             { coolerName: "Sahne", cooleMenge: 0 },
             { coolerName: "Smarties", cooleMenge: 0 }
         ]
     };
-})(A5 || (A5 = {}));
+})(A6 || (A6 = {}));
 //# sourceMappingURL=data.js.map

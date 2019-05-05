@@ -1,5 +1,5 @@
-var A5;
-(function (A5) {
+var A6;
+(function (A6) {
     let preis;
     let preisKugel = 0;
     let preisZusatz = 0;
@@ -14,8 +14,8 @@ var A5;
         console.log("Funktion Seite Laden");
         let stringEissorten = "";
         let stringZusaetze = "";
-        for (let key in A5.alleDaten) {
-            let eisKeys = A5.alleDaten[key];
+        for (let key in A6.alleDaten) {
+            let eisKeys = A6.alleDaten[key];
             /*
             console.group(key);
             console.dir(eisKeys);
@@ -24,7 +24,7 @@ var A5;
             for (let i = 0; i < eisKeys.length; i++) {
                 if (key == "Zusätze") {
                     zusatz.push(eisKeys[i].coolerName);
-                    stringZusaetze += `${eisKeys[i].coolerName}
+                    stringZusaetze += `<label for="${eisKeys[i].coolerName}">${eisKeys[i].coolerName}</label>
                     <input type="checkbox" name="${eisKeys[i].coolerName}" id="${eisKeys[i].coolerName}" value="check${i + 1}" id="check${i + 1}"> <br>`;
                 }
                 else if (key == "Eissorten") {
@@ -61,10 +61,10 @@ var A5;
                 }
             }
         }
-        if (ziel.value == "liefer1" || ziel.value == "liefer3") {
+        if (ziel.id == "liefer1" || ziel.id == "liefer3") {
             preisLieferung = 0;
         }
-        if (ziel.value == "liefer2") {
+        if (ziel.id == "liefer2") {
             preisLieferung = 0.5;
         }
         preis = preisKugel + preisZusatz + preisLieferung;
@@ -88,19 +88,21 @@ var A5;
     }
     function pruefen() {
         console.log("Daten werden geprüft");
+        let ueberpruefung = "";
         if (document.getElementById("bestellung").innerHTML == "Ihre Bestellung beinhaltet: ...")
-            alert("Bitte stellen Sie Ihr Wunscheis zusammen.");
-        else if (document.getElementsByName("Behaelter")[0].checked == false && document.getElementsByName("Behaelter")[1].checked == false) //wie Z.63
-            alert("Bitte einen Behäter auswählen.");
-        else if (document.getElementsByName("Lieferung")[0].checked == false && document.getElementsByName("Lieferung")[1].checked == false && document.getElementsByName("Lieferung")[2].checked == false)
-            alert("Bitte eine Lieferoption wählen.");
-        else if (document.getElementsByName("Login")[0].value == "" || document.getElementsByName("Login")[1].value == "")
-            alert("Bitte Benutzername und Passwort eingeben.");
-        else if (document.getElementsByName("Adresse")[0].value == "" || document.getElementsByName("Adresse")[1].value == "" || document.getElementsByName("Adresse")[2].value == "")
-            alert("Bitte Ihre Adresse eingeben.");
-        else
-            alert("Daten wurden gesendet :D ");
+            ueberpruefung += "Bitte stellen Sie Ihr Wunscheis zusammen.";
+        if (document.getElementsByName("Behaelter")[0].checked == false && document.getElementsByName("Behaelter")[1].checked == false) //wie Z.63
+            ueberpruefung += "Bitte einen Behäter auswählen.";
+        if (document.getElementsByName("Lieferung")[0].checked == false && document.getElementsByName("Lieferung")[1].checked == false && document.getElementsByName("Lieferung")[2].checked == false)
+            ueberpruefung += "Bitte eine Lieferoption wählen.";
+        if (document.getElementsByName("Login")[0].value == "" || document.getElementsByName("Login")[1].value == "")
+            ueberpruefung += "Bitte Benutzername und Passwort eingeben.";
+        if (document.getElementsByName("Adresse")[0].value == "" || document.getElementsByName("Adresse")[1].value == "" || document.getElementsByName("Adresse")[2].value == "")
+            ueberpruefung += "Bitte Ihre Adresse eingeben.";
+        if (ueberpruefung == "")
+            ueberpruefung = "Daten wurden gesendet :D ";
+        alert(ueberpruefung);
     }
     seiteLaden();
-})(A5 || (A5 = {}));
+})(A6 || (A6 = {}));
 //# sourceMappingURL=script.js.map
