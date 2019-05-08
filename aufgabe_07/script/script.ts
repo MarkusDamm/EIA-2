@@ -1,4 +1,4 @@
-namespace A6 {
+namespace A7 {
     let preis: number;
     let preisKugel: number = 0;
     let preisZusatz: number = 0;

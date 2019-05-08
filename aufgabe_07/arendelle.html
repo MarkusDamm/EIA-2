@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Arendelle Eisshop</title>
+</head>
+
+<body>
+
+    <header>
+        <img src="./images/logo.png" alt="Logo">
+        <h1>Arendelle</h1>
+        <output name="bestellung" id="bestellung">Ihre Bestellung beinhaltet: ...</output>
+        <output name="preis" id="preis">00,00 €</output>
+        <button id="button" type="submit">Bestellung Prüfen</button>
+    </header>
+
+    <main>
+        <form action="arendelle.html" method="get">
+            <fieldset>
+                <legend>Behälter</legend>
+                <input type="radio" name="Behaelter" value="waffel" id="radio1" />
+                <label for="radio1">Waffel</label>
+                <input type="radio" name="Behaelter" value="becher" id="radio2" />
+                <label for="radio2">Becher</label>
+            </fieldset>
+            <fieldset id="Eissorten">
+                <legend>Kugeln (je 70 ct)</legend>
+            </fieldset>
+
+            <fieldset id="Zusätze">
+                <legend>Zusätze (je 30 ct)</legend>
+            </fieldset>
+
+    </main>
+
+    <footer>
+        <fieldset id="Lieferoptionen">
+            <legend>Lieferoptionen</legend>
+            <input type="radio" name="Lieferung" value="selbst" id="liefer1">
+            <label for="liefer1">Selbstabholung</label> <br>
+            <input type="radio" name="Lieferung" value="schnell" id="liefer2">
+            <label for="liefer2">Expresslieferung (50 ct Aufpreis)</label> <br>
+            <input type="radio" name="Lieferung" value="geschmolzen" id="liefer3">
+            <label for="liefer3">Halb-geschmolzen-Lieferung</label>
+        </fieldset>
+        <button type="submit">Bestellen</button> <!--Button benötigt Event Listener-->
+        </form>
+        <fieldset>
+            <legend>Benutzerdaten</legend>
+            <p>
+                Benutzername
+                <input type="text" name="Login" placeholder="Benutzername" value="" required />
+            </p>
+            <p>
+                Passwort
+                <input type="password" name="Login" placeholder="Passwort" value="" required />
+            </p>
+            <p>
+                Mail
+                <input type="email" name="Mail" placeholder="max.musterdivers@email.com" value="" />
+            </p>
+            <p>
+                Straße, Hausnummer
+                <input type="text" name="Adresse" placeholder="Schillerstr. 8" value="" required />
+            </P>
+            <p>
+                Ort
+                <input type="text" name="Adresse" placeholder="Ort" value="" required />
+            </p>
+            <p>
+                Postleitzahl
+                <input type="text" name="Adresse" pattern="[0-9]{5}" placeholder="PLZ" value="" required />
+            </p>
+        </fieldset>
+    </footer>
+    <script src="./script/data.js"></script>
+    <script src="./script/script.js"></script>
+</body>
+
+</html>
