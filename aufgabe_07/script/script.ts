@@ -8,6 +8,7 @@ namespace A7 {
     let bestellung: string;
     let ziel: HTMLInputElement;
 
+    window.addEventListener("load", seiteLaden);
     document.addEventListener("change", veraenderung);
     document.getElementById("button").addEventListener("click", pruefen);
 
@@ -17,11 +18,6 @@ namespace A7 {
         let stringZusaetze: string = "";
         for (let key in alleDaten) {    
             let eisKeys: CooleDaten[] = alleDaten[key];
-            /*
-            console.group(key);
-            console.dir(eisKeys);
-            console.groupEnd();
-            */
             for (let i: number = 0; i < eisKeys.length; i++) {
                 if (key == "Zusätze") {
                     zusatz.push(eisKeys[i].coolerName); 
@@ -117,5 +113,5 @@ namespace A7 {
         alert(ueberpruefung);
     }
 
-    seiteLaden();
+    //seiteLaden();
 }

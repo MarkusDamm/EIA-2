@@ -30,12 +30,12 @@ var L05_Server;
     //Ende der Funktion
     function handleRequest(_request, _response) {
         //Die Funktion handelRequest, Typ: void, benötigt zwei Parameter 
-        console.log("I hear voices!");
+        console.log("I hear voices in my head! They council me, they understand. They talk to me...");
         //Einfache Ausgabe in der Console
         _response.setHeader("content-type", "text/html; charset=utf-8");
         //Setzt den content-type im header auf den Wert "text/html" und "charset=utf-8"
         _response.setHeader("Access-Control-Allow-Origin", "*");
-        //Setzt "Access-Control-Allow-Origin" im header auf den Wert *
+        //Erlaubt Zugriff aus * = allen Quellen
         _response.write(_request.url);
         //Sendet die header-Infos und die URL der Anfrage an den Client
         _response.end();

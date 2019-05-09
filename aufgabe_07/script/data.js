@@ -1,6 +1,6 @@
-var A6;
-(function (A6) {
-    A6.alleDaten = {
+var A7;
+(function (A7) {
+    A7.alleDaten = {
         "Eissorten": [
             { coolerName: "Vanille", cooleMenge: 0 },
             { coolerName: "Schokolade", cooleMenge: 0 },
@@ -14,5 +14,5 @@ var A6;
             { coolerName: "Smarties", cooleMenge: 0 }
         ]
     };
-})(A6 || (A6 = {}));
+})(A7 || (A7 = {}));
 //# sourceMappingURL=data.js.map

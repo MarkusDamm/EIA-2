@@ -1,5 +1,5 @@
-var A6;
-(function (A6) {
+var A7;
+(function (A7) {
     let preis;
     let preisKugel = 0;
     let preisZusatz = 0;
@@ -8,19 +8,15 @@ var A6;
     let zusatz = [];
     let bestellung;
     let ziel;
+    window.addEventListener("load", seiteLaden);
     document.addEventListener("change", veraenderung);
     document.getElementById("button").addEventListener("click", pruefen);
     function seiteLaden() {
         console.log("Funktion Seite Laden");
         let stringEissorten = "";
         let stringZusaetze = "";
-        for (let key in A6.alleDaten) {
-            let eisKeys = A6.alleDaten[key];
-            /*
-            console.group(key);
-            console.dir(eisKeys);
-            console.groupEnd();
-            */
+        for (let key in A7.alleDaten) {
+            let eisKeys = A7.alleDaten[key];
             for (let i = 0; i < eisKeys.length; i++) {
                 if (key == "Zusätze") {
                     zusatz.push(eisKeys[i].coolerName);
@@ -92,8 +88,8 @@ var A6;
         let eisGewaehlt = false;
         //  if (document.getElementById("bestellung").innerHTML == "Ihre Bestellung beinhaltet: ...")
         //      ueberpruefung += "Bitte stellen Sie Ihr Wunscheis zusammen.";
-        for (let i = 0; i < A6.alleDaten["Eissorten"].length; i++) {
-            ziel = document.getElementById(A6.alleDaten["Eissorten"][i].coolerName);
+        for (let i = 0; i < A7.alleDaten["Eissorten"].length; i++) {
+            ziel = document.getElementById(A7.alleDaten["Eissorten"][i].coolerName);
             if (Number(ziel.value) > 0)
                 eisGewaehlt = true;
         }
@@ -111,6 +107,6 @@ var A6;
             ueberpruefung = "Daten wurden gesendet :D ";
         alert(ueberpruefung);
     }
-    seiteLaden();
-})(A6 || (A6 = {}));
+    //seiteLaden();
+})(A7 || (A7 = {}));
 //# sourceMappingURL=script.js.map
