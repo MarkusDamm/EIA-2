@@ -39,9 +39,9 @@ var A7;
     function veraenderung(_event) {
         ziel = _event.target;
         bestellung = "Ihre Bestellung beinhaltet: </br>";
-        console.log("Changed " + ziel.name + " to " + ziel.value);
+        //console.log("Changed " + ziel.name + " to " + ziel.value);
         if (ziel.type == "number") {
-            console.log("Changed " + ziel.name);
+            //console.log("Changed " + ziel.name );
             preisKugel = 0;
             for (let i = 0; i < kugeln.length; i++) {
                 ziel = document.getElementById(kugeln[i]); //Habe versucht den Fehler mit einer Variable vom Typ HTMLElement zu beheben, gibt dann aber einen anderen Fehler aus :/
@@ -111,27 +111,29 @@ var A7;
         alert(ueberpruefung);
     }
     function vorbereiten() {
-        urlString = "";
+        urlString = "?";
         let verarbeitung;
         let j = 1;
         for (let i = 0; i < document.getElementsByClassName("radio").length; i++) {
             verarbeitung = document.getElementsByClassName("radio")[i];
             if (verarbeitung.checked == true)
-                urlString += "?Behaelter=" + verarbeitung.value + "+";
+                urlString += "Behaelter=" + verarbeitung.value + "&";
         }
         for (let i = 0; i < document.getElementsByClassName("eis").length; i++) {
             verarbeitung = document.getElementsByClassName("eis")[i];
             if (Number(verarbeitung.value) > 0)
-                urlString += `?Eis${j++}=` + verarbeitung.name + verarbeitung.value + "+";
+                urlString += `Eis${j++}=` + verarbeitung.name + "x" + verarbeitung.value + "&";
         }
         j = 1;
         for (let i = 0; i < document.getElementsByClassName("zusaetze").length; i++) {
             verarbeitung = document.getElementsByClassName("zusaetze")[i];
             if (verarbeitung.checked == true)
-                urlString += `?Zusatz${j++}=` + verarbeitung.name + "+";
+                urlString += `Zusatz${j++}=` + verarbeitung.name + "&";
         }
+        if (urlString.endsWith("&"))
+            urlString = urlString.substr(0, urlString.length - 1);
         console.log(urlString);
-        anfrageAbsenden(urlString);
+        //anfrageAbsenden(urlString);
     }
     function anfrageAbsenden(_urlAdresse) {
         let xhr = new XMLHttpRequest();
@@ -143,6 +145,8 @@ var A7;
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // Neues Objekt im HTML Anlegen, darin die Daten anzeigen
+            document.getElementById("main").insertBefore(document.createElement("fieldset"), document.getElementById("BehaelterField"));
+            document.getElementsByTagName("fieldset")[0].setAttribute("id", "VerarbeiteteBestellung");
             //console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             //console.log("response: " + xhr.response);
         }
