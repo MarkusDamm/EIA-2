@@ -7,27 +7,33 @@ namespace A7 {
     let zusatz: string[] = [];
     let bestellung: string;
     let ziel: HTMLInputElement;
+    let addresse: string = "https://fuwa-eia2.herokuapp.com/";
+    let urlString: string = "";
 
     window.addEventListener("load", seiteLaden);
-    document.addEventListener("change", veraenderung);
-    document.getElementById("button").addEventListener("click", pruefen);
+    
 
     function seiteLaden(): void {
         console.log("Funktion Seite Laden");
+        document.addEventListener("change", veraenderung);
+        document.getElementById("button").addEventListener("click", pruefen);
+        document.getElementById("abschicken").addEventListener("click", vorbereiten);
+
         let stringEissorten: string = "";
         let stringZusaetze: string = "";
+        
         for (let key in alleDaten) {    
             let eisKeys: CooleDaten[] = alleDaten[key];
             for (let i: number = 0; i < eisKeys.length; i++) {
                 if (key == "Zusätze") {
                     zusatz.push(eisKeys[i].coolerName); 
                     stringZusaetze += `<label for="${eisKeys[i].coolerName}">${eisKeys[i].coolerName}</label>
-                    <input type="checkbox" name="${eisKeys[i].coolerName}" id="${eisKeys[i].coolerName}" value="check${i + 1}" id="check${i + 1}"> <br>`;
+                    <input type="checkbox" name="${eisKeys[i].coolerName}" id="${eisKeys[i].coolerName}" class ="zusaetze"  value="check${i + 1}" id="check${i + 1}"> <br>`;
                 }
                 else if (key == "Eissorten") {
                     kugeln.push(eisKeys[i].coolerName);
                     stringEissorten += `${eisKeys[i].coolerName}
-                    <input type="number" name="${eisKeys[i].coolerName}" id="${eisKeys[i].coolerName}" step="1" min="0" max="10" value="0"> <br>`;
+                    <input type="number" name="${eisKeys[i].coolerName}" id="${eisKeys[i].coolerName}" class="eis" step="1" min="0" max="10" value="0"> <br>`;
                 }
             }
         }
@@ -113,5 +119,44 @@ namespace A7 {
         alert(ueberpruefung);
     }
 
-    //seiteLaden();
+    function vorbereiten() {
+        urlString = "";
+        let verarbeitung: HTMLInputElement;
+        let j: number = 1;
+
+        for (let i = 0; i < document.getElementsByClassName("radio").length; i++) {
+            verarbeitung = document.getElementsByClassName("radio")[i];
+            if (verarbeitung.checked == true)
+                urlString += "?Behaelter=" + verarbeitung.value + "+" ;
+        }
+        for (let i = 0; i < document.getElementsByClassName("eis").length; i++) {
+            verarbeitung = document.getElementsByClassName("eis")[i];
+            if (Number(verarbeitung.value) > 0)
+                urlString += `?Eis${j++}=` + verarbeitung.name + verarbeitung.value + "+";
+        }
+        j = 1;
+        for (let i = 0; i < document.getElementsByClassName("zusaetze").length; i++) {
+            verarbeitung = document.getElementsByClassName("zusaetze")[i];
+            if (verarbeitung.checked == true)
+                urlString += `?Zusatz${j++}=` + verarbeitung.name + "+";
+        }
+        console.log(urlString);
+        anfrageAbsenden(urlString);
+    }
+
+    function anfrageAbsenden(_urlAdresse: string): void {
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", addresse + urlString, true);
+        xhr.addEventListener("readystatechange", statusaenderungVerarbeiten);
+        xhr.send();
+    }
+
+    function statusaenderungVerarbeiten(_event: ProgressEvent): void {
+        let xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            // Neues Objekt im HTML Anlegen, darin die Daten anzeigen
+            //console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
+            //console.log("response: " + xhr.response);
+        }
+    }
 }
