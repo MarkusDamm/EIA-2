@@ -156,7 +156,7 @@ namespace A7 {
 
     function statusaenderungVerarbeiten(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
-        console.log(xhr);
+        //console.log(xhr);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // Neues Objekt im HTML Anlegen, darin die Daten anzeigen
             document.getElementById("main").insertBefore(document.createElement("fieldset"), document.getElementById("BehaelterField"));
