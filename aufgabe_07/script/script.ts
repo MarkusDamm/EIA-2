@@ -132,35 +132,40 @@ namespace A7 {
         for (let i: number = 0; i < document.getElementsByClassName("eis").length; i++) {
             verarbeitung = document.getElementsByClassName("eis")[i];
             if (Number(verarbeitung.value) > 0)
-                urlString += `Eis${j++}=` + verarbeitung.name + "x" + verarbeitung.value + "&";
+                urlString += `Eis_${j++}=` + verarbeitung.name + "_x_" + verarbeitung.value + "&";
         }
         j = 1;
         for (let i: number = 0; i < document.getElementsByClassName("zusaetze").length; i++) {
             verarbeitung = document.getElementsByClassName("zusaetze")[i];
             if (verarbeitung.checked == true)
-                urlString += `Zusatz${j++}=` + verarbeitung.name + "&";
+                urlString += `Zusatz_${j++}=` + verarbeitung.name + "&";
         }
         if (urlString.endsWith("&")) 
             urlString = urlString.substr(0, urlString.length - 1);  
 
         console.log(urlString);
-        //anfrageAbsenden(urlString);
+        anfrageAbsenden(urlString);
     }
 
     function anfrageAbsenden(_urlAdresse: string): void {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
-        xhr.open("GET", addresse + urlString, true);
+        xhr.open("GET", addresse + _urlAdresse, true);
         xhr.addEventListener("readystatechange", statusaenderungVerarbeiten);
         xhr.send();
     }
 
     function statusaenderungVerarbeiten(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
+        console.log(xhr);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // Neues Objekt im HTML Anlegen, darin die Daten anzeigen
             document.getElementById("main").insertBefore(document.createElement("fieldset"), document.getElementById("BehaelterField"));
             document.getElementsByTagName("fieldset")[0].setAttribute("id", "VerarbeiteteBestellung");
             
+            let htmlString: string = "<legend>Ihre Bestellung</legend>";
+            htmlString += xhr.response;
+            
+            document.getElementById("VerarbeiteteBestellung").innerHTML = htmlString;
 
             //console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             //console.log("response: " + xhr.response);

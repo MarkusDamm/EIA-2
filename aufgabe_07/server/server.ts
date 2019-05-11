@@ -18,14 +18,14 @@ namespace L05_Server {
 	}
 
 	function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
-		console.log("I hear voices!");
+		console.log("I hear voices in my head! They council me, they understand. They talk to me...");
 
 		_response.setHeader("content-type", "text/html; charset=utf-8");
 		_response.setHeader("Access-Control-Allow-Origin", "*");
 
 		let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 		for (let key in url.query)
-			_response.write(key + ":" + url.query[key] + "<br/>");
+			_response.write("<p>" + key + ": " + url.query[key] + "</p>");
 
 		// let jsonString: string = JSON.stringify(url.query);
 		// _response.write(jsonString);
