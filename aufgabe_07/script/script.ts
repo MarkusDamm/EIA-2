@@ -160,9 +160,10 @@ namespace A7 {
         //console.log(xhr);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // Neues Objekt im HTML Anlegen, darin die Daten anzeigen
-            document.getElementById("main").insertBefore(document.createElement("fieldset"), document.getElementById("BehaelterField"));
-            document.getElementsByTagName("fieldset")[0].setAttribute("id", "VerarbeiteteBestellung");
-            
+            if (document.getElementById("VerarbeiteteBestellung")) {
+                document.getElementById("main").insertBefore(document.createElement("fieldset"), document.getElementById("BehaelterField"));
+                document.getElementsByTagName("fieldset")[0].setAttribute("id", "VerarbeiteteBestellung");
+            }
             let htmlString: string = "<legend>Ihre Bestellung</legend>";
             htmlString += xhr.response;
             //Preis wäre vielleicht noch hilfreich xD
