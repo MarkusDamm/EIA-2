@@ -22,7 +22,7 @@ var L05_Server;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         let url = Url.parse(_request.url, true);
         for (let key in url.query)
-            _response.write("<p>" + key + ": " + url.query[key] + "</p>");
+            _response.write(key + ": " + url.query[key] + "<br/>");
         // let jsonString: string = JSON.stringify(url.query);
         // _response.write(jsonString);
         _response.end();

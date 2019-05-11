@@ -130,6 +130,7 @@ var A7;
             if (verarbeitung.checked == true)
                 urlString += `Zusatz_${j++}=` + verarbeitung.name + "&";
         }
+        urlString += `Preis=` + document.getElementById("preis").innerText;
         if (urlString.endsWith("&"))
             urlString = urlString.substr(0, urlString.length - 1);
         console.log(urlString);
@@ -150,6 +151,7 @@ var A7;
             document.getElementsByTagName("fieldset")[0].setAttribute("id", "VerarbeiteteBestellung");
             let htmlString = "<legend>Ihre Bestellung</legend>";
             htmlString += xhr.response;
+            //Preis wäre vielleicht noch hilfreich xD
             document.getElementById("VerarbeiteteBestellung").innerHTML = htmlString;
             //console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             //console.log("response: " + xhr.response);

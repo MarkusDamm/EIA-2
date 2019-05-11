@@ -140,6 +140,7 @@ namespace A7 {
             if (verarbeitung.checked == true)
                 urlString += `Zusatz_${j++}=` + verarbeitung.name + "&";
         }
+        urlString += `Preis=` + document.getElementById("preis").innerText;
         if (urlString.endsWith("&")) 
             urlString = urlString.substr(0, urlString.length - 1);  
 
@@ -164,7 +165,7 @@ namespace A7 {
             
             let htmlString: string = "<legend>Ihre Bestellung</legend>";
             htmlString += xhr.response;
-            
+            //Preis wäre vielleicht noch hilfreich xD
             document.getElementById("VerarbeiteteBestellung").innerHTML = htmlString;
 
             //console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
