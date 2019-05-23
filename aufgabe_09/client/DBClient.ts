@@ -7,8 +7,10 @@ namespace DBClient {
         console.log("Init");
         let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("insert");
         let refreshButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("refresh");
+        let searchButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("search");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
+        searchButton.addEventListener("click", search);
     }
 
     function insert(_event: Event): void {
@@ -44,6 +46,23 @@ namespace DBClient {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
+            output.value = xhr.response;
+            let responseAsJson: JSON = JSON.parse(xhr.response);
+            console.log(responseAsJson);
+        }
+    }
+
+    function search(_event: Event) {
+        let matrNr: number = Number(document.getElementById("searchField").value);
+        console.log(matrNr);
+        let query: string = `command=search&matrikel=${matrNr}`;
+        sendRequest(query, handleSearchResponse)
+    }
+
+    function handleSearchResponse(_event: Event) {
+        let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[1];
             output.value = xhr.response;
             let responseAsJson: JSON = JSON.parse(xhr.response);
             console.log(responseAsJson);
