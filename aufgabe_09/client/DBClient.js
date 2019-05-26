@@ -43,8 +43,8 @@ var DBClient;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output = document.getElementsByTagName("textarea")[0];
             output.value = xhr.response;
-            let responseAsJson = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            // let responseAsJson: JSON = JSON.parse(xhr.response);
+            // console.log(responseAsJson);
         }
     }
     function search(_event) {

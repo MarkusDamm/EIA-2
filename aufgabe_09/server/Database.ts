@@ -15,8 +15,9 @@ let students: Mongo.Collection;
 // running on heroku?
 if (process.env.NODE_ENV == "production") {
     // databaseURL = "mongodb+srv://username:password@hostname:port/database";
-    databaseURL = "mongodb+srv://testuser:testpassword@eia2-57vpd.mongodb.net/eia2";
-    databaseName = "eia2";
+    //databaseURL = "mongodb+srv://testuser:testpassword@eia2-57vpd.mongodb.net/eia2";
+    databaseURL = "mongodb+srv://anyUser:savePassword@clusterfuwa-pmutc.mongodb.net/fThisFingF";
+    databaseName = "fThisFingF";
 }
 
 // try to connect to database, then activate callback "handleConnect" 
