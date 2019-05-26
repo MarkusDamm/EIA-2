@@ -1,7 +1,9 @@
 namespace DBClient {
     window.addEventListener("load", init);
-    let serverAddress: string = "http://localhost:8100/";
-    // let serverAddress: string = "https://eia2-testserver.herokuapp.com/";
+    //let serverAddress: string = "http://localhost:8100/";
+    let serverAddress: string = "https://eia2-testserver.herokuapp.com/";
+    //let serverAddress: string = "https://fuwa-eia2.herokuapp.com/";
+
 
     function init(_event: Event): void {
         console.log("Init");
@@ -52,14 +54,14 @@ namespace DBClient {
         }
     }
 
-    function search(_event: Event) {
+    function search(_event: Event): void {
         let matrNr: number = Number(document.getElementById("searchField").value);
         console.log(matrNr);
         let query: string = `command=search&matrikel=${matrNr}`;
-        sendRequest(query, handleSearchResponse)
+        sendRequest(query, handleSearchResponse);
     }
 
-    function handleSearchResponse(_event: Event) {
+    function handleSearchResponse(_event: Event): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[1];

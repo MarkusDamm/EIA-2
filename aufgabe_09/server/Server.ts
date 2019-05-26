@@ -2,6 +2,7 @@
  * Simple server managing between client and database
  * @author: Jirka Dell'Oro-Friedl
  * @adapted: Lukas Scheuerle
+ * Markus Damm MKB2-B
  */
 
 import * as Http from "http";
@@ -46,7 +47,8 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             break;
         case "search":
             //Bitte liebe Datenbank, suche die MatrNr. :o    
-            Database.findOne(findCallback);
+            let matrNr: number = parseInt(query["matrikel"]);
+            Database.findOne(matrNr, findCallback);
             break;
         default:
             respond(_response, "unknown command: " + command);

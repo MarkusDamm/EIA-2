@@ -3,6 +3,7 @@
  * Simple server managing between client and database
  * @author: Jirka Dell'Oro-Friedl
  * @adapted: Lukas Scheuerle
+ * Markus Damm MKB2-B
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
@@ -35,6 +36,11 @@ function handleRequest(_request, _response) {
             break;
         case "refresh":
             Database.findAll(findCallback);
+            break;
+        case "search":
+            //Bitte liebe Datenbank, suche die MatrNr. :o    
+            let matrNr = parseInt(query["matrikel"]);
+            Database.findOne(matrNr, findCallback);
             break;
         default:
             respond(_response, "unknown command: " + command);

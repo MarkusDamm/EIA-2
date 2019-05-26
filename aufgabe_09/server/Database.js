@@ -55,4 +55,15 @@ function findAll(_callback) {
     }
 }
 exports.findAll = findAll;
+function findOne(_matrNr, _callback) {
+    var cursor = students.find({ matrikel: _matrNr });
+    cursor.toArray(prepareAnswer);
+    function prepareAnswer(_e, studentArray) {
+        if (_e)
+            _callback("Error" + _e);
+        else
+            _callback(JSON.stringify(studentArray));
+    }
+}
+exports.findOne = findOne;
 //# sourceMappingURL=Database.js.map

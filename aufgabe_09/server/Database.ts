@@ -60,3 +60,17 @@ export function findAll(_callback: Function): void {
             _callback(JSON.stringify(studentArray));
     }
 }
+
+export function findOne(_matrNr: number, _callback: Function): void {
+    var cursor: Mongo.Cursor = students.find({ matrikel: _matrNr });
+    cursor.toArray(prepareAnswer);
+    
+    function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
+        if (_e)
+            _callback("Error" + _e);
+        else
+            _callback(JSON.stringify(studentArray));
+    }
+
+
+}
