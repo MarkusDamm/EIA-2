@@ -42,7 +42,7 @@ function handleInsert(_e) {
 // try to fetch all documents from database, then activate callback
 function findAll(_callback) {
     // cursor points to the retreived set of documents in memory
-    var cursor = students.find();
+    let cursor = students.find();
     // try to convert to array, then activate callback "prepareAnswer"
     cursor.toArray(prepareAnswer);
     // toArray-handler receives two standard parameters, an error object and the array
@@ -57,7 +57,7 @@ function findAll(_callback) {
 }
 exports.findAll = findAll;
 function findOne(_matrNr, _callback) {
-    var cursor = students.find({ matrikel: _matrNr });
+    let cursor = students.find({ matrikel: _matrNr });
     cursor.toArray(prepareAnswer);
     function prepareAnswer(_e, studentArray) {
         if (_e)

@@ -47,7 +47,7 @@ function handleInsert(_e: Mongo.MongoError): void {
 // try to fetch all documents from database, then activate callback
 export function findAll(_callback: Function): void {
     // cursor points to the retreived set of documents in memory
-    var cursor: Mongo.Cursor = students.find();
+    let cursor: Mongo.Cursor = students.find();
     // try to convert to array, then activate callback "prepareAnswer"
     cursor.toArray(prepareAnswer);
 
@@ -63,7 +63,7 @@ export function findAll(_callback: Function): void {
 }
 
 export function findOne(_matrNr: number, _callback: Function): void {
-    var cursor: Mongo.Cursor = students.find({ matrikel: _matrNr });
+    let cursor: Mongo.Cursor = students.find({ matrikel: _matrNr });
     cursor.toArray(prepareAnswer);
     
     function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
