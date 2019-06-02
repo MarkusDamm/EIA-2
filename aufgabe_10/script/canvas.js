@@ -32,7 +32,7 @@ var A10;
             }
         }
         drawPatrickS(350, 630);
-        drawTQTentakel(canvas.width - 500, 600);
+        drawTQTentakel(canvas.width - 430, 620);
         /*if (Math.random() * 100 >= 75) {
             x = Math.random() * canvas.width;
             y = Math.random() * (canvas.height / 6) + (canvas.height / 6 * 5);
@@ -218,12 +218,71 @@ var A10;
         crc.lineWidth = 1;
     }
     function drawTQTentakel(_x, _y) {
+        let haus = new Path2D;
+        haus.moveTo(_x + 150, _y - 400);
+        haus.lineTo(_x - 25, _y - 330);
+        haus.lineTo(_x - 25, _y - 160);
+        haus.lineTo(_x + 150, _y - 120);
+        haus.lineTo(_x + 325, _y - 160);
+        haus.lineTo(_x + 325, _y - 330);
+        haus.closePath();
+        crc.fillStyle = "lightgrey";
+        crc.strokeStyle = "grey";
+        crc.stroke(haus);
+        crc.fill(haus);
+        haus = new Path2D;
+        haus.moveTo(_x, _y);
+        haus.quadraticCurveTo(_x + 150, _y + 50, _x + 300, _y);
+        haus.lineTo(_x + 250, _y - 550);
+        haus.lineTo(_x + 50, _y - 550);
+        haus.closePath();
+        crc.stroke(haus);
+        crc.fill(haus);
+        haus = new Path2D;
+        haus.moveTo(_x + 85, _y + 21);
+        haus.bezierCurveTo(_x + 75, _y - 170, _x + 225, _y - 170, _x + 215, _y + 21);
+        haus.quadraticCurveTo(_x + 150, _y + 30, _x + 85, _y + 21);
+        crc.strokeStyle = "black";
+        crc.fillStyle = "darkgrey";
+        crc.stroke(haus);
+        crc.fill(haus);
+        haus = new Path2D;
+        haus.moveTo(_x + 125, _y - 350);
+        haus.lineTo(_x + 100, _y - 150);
+        haus.lineTo(_x + 200, _y - 150);
+        haus.lineTo(_x + 175, _y - 350);
+        crc.stroke(haus);
+        crc.fill(haus);
+        haus = new Path2D;
+        haus.arc(_x + 85, _y - 320, 35, 0, 2 * Math.PI);
+        crc.strokeStyle = "Black";
+        crc.lineWidth = 2;
+        crc.stroke(haus);
+        crc.fill(haus);
+        haus = new Path2D;
+        haus.arc(_x + 215, _y - 320, 35, 0, 2 * Math.PI);
+        crc.stroke(haus);
+        crc.fill(haus);
+        haus = new Path2D;
+        haus.moveTo(_x + 50, _y - 350);
+        haus.lineTo(_x + 50, _y - 390);
+        haus.lineTo(_x + 250, _y - 390);
+        haus.lineTo(_x + 250, _y - 350);
+        haus.closePath();
+        crc.strokeStyle = "Black";
+        crc.lineWidth = 2;
+        crc.stroke(haus);
+        crc.fill(haus);
     }
-    function drawGary(_x, _y) {
+    /*
+    function drawGary(_x: number, _y: number): void {
+        
     }
+    */
     function drawBubbles(_x, _y) {
         let bubble = new Path2D();
         bubble.arc(_x, _y, 3 + Math.random() * 5, 0, 2 * Math.PI);
+        crc.lineWidth = 1;
         crc.fillStyle = "lightblue";
         crc.strokeStyle = "rgba(38, 38, 255, 0.5)";
         crc.fill(bubble);
@@ -236,7 +295,7 @@ var A10;
         let bubble = new Path2D();
         bubble.arc(x, y, 3 + Math.random() * 7, 0, 2 * Math.PI);
         crc.fillStyle = "lightblue";
-        crc.strokeStyle = "rgba(38, 38, 255, 0.726)";
+        crc.strokeStyle = "rgba(38, 38, 255, 0.5)";
         crc.fill(bubble);
         crc.stroke(bubble);
     }
