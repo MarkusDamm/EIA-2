@@ -7,11 +7,11 @@ var A11;
             this.dy = Math.random() * 4 - 2;
             if (Math.random() * 2 >= 1) {
                 this.faceRight = true;
-                this.dx = 1 + Math.random() * 4;
+                this.dx = Math.random() * 3;
             }
             else {
                 this.faceRight = false;
-                this.dx = -1 + Math.random() * -4;
+                this.dx = Math.random() * -3;
             }
         }
         move() {

@@ -21,20 +21,20 @@ namespace A11 {
 			y = Math.random() * (canvas.height / 6) + (canvas.height / 6 * 5);
 			drawStones(x, y);
 
-			if (i % 4 == 0) {
+			if (i % 2 == 0) {
 				x = Math.random() * canvas.width;
 				y = Math.random() * (canvas.height / 6 - 7) + (canvas.height / 6 * 5);
 				drawSeaweed(x, y);
 				crc.lineWidth = 1;
 			}
 		}
-		drawPatrickS(350, 630);
-		drawTQTentakel(canvas.width - 430, 620);
+		drawPatrickS(350, canvas.height - canvas.height / 9.5);
+		drawTQTentakel(canvas.width - 430, canvas.height - canvas.height / 9);
 		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
 		crc.lineWidth = 1;
 
-		for (let i: number = 0; i < 100; i++) {
-			if (i % 20 == 0) {
+		for (let i: number = 0; i < 300; i++) {
+			if (i % 40 == 0) {
 				let roundFish: FishRound = new A11.FishRound;
 				roundFish.draw();
 				roundArray.push(roundFish);
@@ -211,20 +211,9 @@ namespace A11 {
 
 	/*
 	function drawGary(_x: number, _y: number): void {	}
-	
-
-	function drawBubbles(_x: number, _y: number): void {
-		let bubble: Path2D = new Path2D();
-		bubble.arc(_x, _y, 3 + Math.random() * 5, 0, 2 * Math.PI);
-		crc.lineWidth = 1;
-		crc.fillStyle = "lightblue";
-		crc.strokeStyle = "rgba(38, 38, 255, 0.5)";
-		crc.fill(bubble);
-		crc.stroke(bubble);
-	}
 */
 	function drawBubble(_event: MouseEvent): void {
-		let bubbles: Bubbles = new A11.Bubbles;
+		let bubbles: Bubbles = new A11.Bubbles(_event);
 		bubbles.draw();
 		bubblesArray.push(bubbles);
 /*	Gerade nur zufällige Blasen

@@ -4,14 +4,14 @@ var A11;
         constructor() {
             this.x = Math.random() * A11.canvas.width;
             this.y = Math.random() * (A11.canvas.height / 4 * 3);
-            this.dy = Math.random() * 2 - 1;
+            this.dy = Math.random() * 1 - 0.5;
             if (Math.random() * 2 > 1) {
                 this.faceRight = true;
-                this.dx = 1 + Math.random() * 3;
+                this.dx = 1 + Math.random() * 4;
             }
             else {
                 this.faceRight = false;
-                this.dx = -1 + Math.random() * -3;
+                this.dx = -1 + Math.random() * -4;
             }
         }
         move() {

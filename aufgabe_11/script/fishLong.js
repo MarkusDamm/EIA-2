@@ -4,14 +4,14 @@ var A11;
         constructor() {
             this.x = Math.random() * A11.canvas.width;
             this.y = Math.random() * (A11.canvas.height / 4 * 3);
-            this.dy = Math.random() * 4 - 2;
+            this.dy = Math.random() * 2 - 1;
             if (Math.random() * 2 >= 1) {
                 this.faceRight = true;
-                this.dx = 1 + Math.random() * 4;
+                this.dx = 0.5 + Math.random() * 3;
             }
             else {
                 this.faceRight = false;
-                this.dx = -1 + Math.random() * -4;
+                this.dx = -0.5 + Math.random() * -3;
             }
         }
         move() {
@@ -60,4 +60,4 @@ var A11;
     }
     A11.FishLong = FishLong;
 })(A11 || (A11 = {}));
-//# sourceMappingURL=fishLong.js.map
+//# sourceMappingURL=FishLong.js.map

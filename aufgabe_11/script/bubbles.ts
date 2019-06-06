@@ -5,9 +5,15 @@ namespace A11 {
         dy: number;
         r: number;
 
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * (canvas.height - 75);
+        constructor(_event?: MouseEvent) {
+            if (_event) {
+                this.x = _event.x - 9;
+                this.y = _event.y - 9;
+            }
+            else {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * (canvas.height - 75);
+            }
             this.dy = -0.5 + Math.random() * -2.5;
             this.r = 3 + Math.random() * 5;
         }

@@ -9,14 +9,14 @@ namespace A11 {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * (canvas.height / 4 * 3);
-            this.dy = Math.random() * 4 - 2;
+            this.dy = Math.random() * 2 - 1;
             if (Math.random() * 2 >= 1) {
                 this.faceRight = true;
-                this.dx = 1 + Math.random() * 4;
+                this.dx = 0.5 + Math.random() * 3;
             }
             else {
                 this.faceRight = false;
-                this.dx = -1 + Math.random() * -4;
+                this.dx = -0.5 + Math.random() * -3;
             }
         }
 

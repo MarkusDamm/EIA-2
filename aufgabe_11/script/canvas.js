@@ -17,19 +17,19 @@ var A11;
             x = Math.random() * A11.canvas.width;
             y = Math.random() * (A11.canvas.height / 6) + (A11.canvas.height / 6 * 5);
             drawStones(x, y);
-            if (i % 4 == 0) {
+            if (i % 2 == 0) {
                 x = Math.random() * A11.canvas.width;
                 y = Math.random() * (A11.canvas.height / 6 - 7) + (A11.canvas.height / 6 * 5);
                 drawSeaweed(x, y);
                 A11.crc.lineWidth = 1;
             }
         }
-        drawPatrickS(350, 630);
-        drawTQTentakel(A11.canvas.width - 430, 620);
+        drawPatrickS(350, A11.canvas.height - A11.canvas.height / 9.5);
+        drawTQTentakel(A11.canvas.width - 430, A11.canvas.height - A11.canvas.height / 9);
         imageData = A11.crc.getImageData(0, 0, A11.canvas.width, A11.canvas.height);
         A11.crc.lineWidth = 1;
-        for (let i = 0; i < 100; i++) {
-            if (i % 20 == 0) {
+        for (let i = 0; i < 300; i++) {
+            if (i % 40 == 0) {
                 let roundFish = new A11.FishRound;
                 roundFish.draw();
                 roundArray.push(roundFish);
@@ -181,20 +181,9 @@ var A11;
     }
     /*
     function drawGary(_x: number, _y: number): void {	}
-    
-
-    function drawBubbles(_x: number, _y: number): void {
-        let bubble: Path2D = new Path2D();
-        bubble.arc(_x, _y, 3 + Math.random() * 5, 0, 2 * Math.PI);
-        crc.lineWidth = 1;
-        crc.fillStyle = "lightblue";
-        crc.strokeStyle = "rgba(38, 38, 255, 0.5)";
-        crc.fill(bubble);
-        crc.stroke(bubble);
-    }
 */
     function drawBubble(_event) {
-        let bubbles = new A11.Bubbles;
+        let bubbles = new A11.Bubbles(_event);
         bubbles.draw();
         bubblesArray.push(bubbles);
         /*	Gerade nur zufällige Blasen
