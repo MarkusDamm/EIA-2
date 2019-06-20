@@ -1,0 +1,79 @@
+var A12;
+(function (A12) {
+    class FishEdgy extends A12.Fish {
+        constructor() {
+            super();
+            this.x = Math.random() * A12.canvas.width;
+            this.y = Math.random() * (A12.canvas.height / 4 * 3);
+            this.dy = Math.random() * 1 - 0.5;
+            if (Math.random() * 2 > 1) {
+                this.faceRight = true;
+                this.dx = 1 + Math.random() * 4;
+            }
+            else {
+                this.faceRight = false;
+                this.dx = -1 + Math.random() * -4;
+            }
+            this.draw();
+        }
+        move() {
+            super.move();
+            if (this.x > A12.canvas.width + 60 || this.x < -60) {
+                if (this.faceRight == true)
+                    this.x = 0;
+                else
+                    this.x = A12.canvas.width;
+            }
+            if (this.y < -65)
+                this.y = A12.canvas.height + 65;
+            if (this.y > A12.canvas.height + 65)
+                this.y = -65;
+        }
+        draw() {
+            let fish = new Path2D;
+            fish.moveTo(this.x, this.y);
+            if (this.faceRight == false) {
+                fish.lineTo(this.x + 40, this.y - 60);
+                fish.lineTo(this.x + 40, this.y + 60);
+            }
+            else {
+                fish.lineTo(this.x - 40, this.y - 60);
+                fish.lineTo(this.x - 40, this.y + 60);
+            }
+            fish.lineTo(this.x, this.y);
+            A12.crc.stroke(fish);
+            A12.crc.fillStyle = "violet";
+            A12.crc.fill(fish);
+            fish = new Path2D;
+            if (this.faceRight == false) {
+                fish.moveTo(this.x + 40, this.y - 7);
+                fish.lineTo(this.x + 55, this.y - 18);
+                fish.lineTo(this.x + 47, this.y);
+                fish.lineTo(this.x + 55, this.y + 18);
+                fish.lineTo(this.x + 40, this.y + 7);
+            }
+            else {
+                fish.moveTo(this.x - 40, this.y - 7);
+                fish.lineTo(this.x - 55, this.y - 18);
+                fish.lineTo(this.x - 47, this.y);
+                fish.lineTo(this.x - 55, this.y + 18);
+                fish.lineTo(this.x - 40, this.y + 7);
+            }
+            A12.crc.stroke(fish);
+            A12.crc.fill(fish);
+            fish = new Path2D;
+            if (this.faceRight == false)
+                fish.arc(this.x + 23, this.y - 16, 2, 0, 2 * Math.PI);
+            else
+                fish.arc(this.x - 23, this.y - 16, 2, 0, 2 * Math.PI);
+            A12.crc.fillStyle = "black";
+            A12.crc.fill(fish);
+        }
+        update() {
+            this.move();
+            this.draw();
+        }
+    }
+    A12.FishEdgy = FishEdgy;
+})(A12 || (A12 = {}));
+//# sourceMappingURL=FishEdgy.js.map
