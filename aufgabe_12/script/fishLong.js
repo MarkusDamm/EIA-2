@@ -54,11 +54,7 @@ var A12;
             A12.crc.fillStyle = "black";
             A12.crc.fill(fish);
         }
-        update() {
-            this.move();
-            this.draw();
-        }
     }
     A12.FishLong = FishLong;
 })(A12 || (A12 = {}));
-//# sourceMappingURL=FishLong.js.map
+//# sourceMappingURL=fishLong.js.map

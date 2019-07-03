@@ -56,11 +56,7 @@ var A12;
             A12.crc.fillStyle = "black";
             A12.crc.fill(fish);
         }
-        update() {
-            this.move();
-            this.draw();
-        }
     }
     A12.FishRound = FishRound;
 })(A12 || (A12 = {}));
-//# sourceMappingURL=FishRound.js.map
+//# sourceMappingURL=fishRound.js.map

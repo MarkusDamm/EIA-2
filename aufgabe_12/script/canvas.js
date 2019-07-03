@@ -3,12 +3,12 @@ var A12;
     document.addEventListener("DOMContentLoaded", init);
     let fps = 60;
     let imageData;
+    let allArray = [];
     let roundArray = [];
     let longArray = [];
     let edgyArray = [];
     let bubblesArray = [];
     let bubbleOn = true;
-    let bubbleCounter = 0;
     function init() {
         A12.canvas = document.getElementsByTagName("canvas")[0];
         A12.crc = A12.canvas.getContext("2d");
@@ -30,8 +30,8 @@ var A12;
         drawTQTentakel(A12.canvas.width - 430, A12.canvas.height - A12.canvas.height / 9);
         imageData = A12.crc.getImageData(0, 0, A12.canvas.width, A12.canvas.height);
         A12.crc.lineWidth = 1;
-        for (let i = 0; i < 300; i++) {
-            if (i % 40 == 0) {
+        for (let i = 0; i < 50; i++) {
+            if (i % 8 == 0) {
                 let roundFish = new A12.FishRound();
                 //roundFish.draw();
                 roundArray.push(roundFish);
@@ -41,10 +41,12 @@ var A12;
                 let edgyFish = new A12.FishEdgy();
                 //edgyFish.draw();
                 edgyArray.push(edgyFish);
+                allArray.push(roundFish, longFish, edgyFish);
             }
             let bubbles = new A12.Bubble();
             //bubbles.draw();
             bubblesArray.push(bubbles);
+            allArray.push(bubbles);
         }
         A12.canvas.addEventListener("mousemove", drawBubble);
         A12.canvas.addEventListener("click", drawFishfood);
@@ -178,37 +180,45 @@ var A12;
         A12.crc.fill(haus);
     }
     function drawBubble(_event) {
-        //window.setTimeout(drawBubble, 1000);
         if (bubbleOn == true) {
             let bubbles = new A12.Bubble(_event);
-            bubbles.draw();
+            //bubbles.draw();
             bubblesArray.push(bubbles);
+            allArray.push(bubbles);
             bubbleOn = false;
-        }
-        else {
-            bubbleCounter++;
-            if (bubbleCounter == 20)
-                bubbleOn = true;
+            window.setTimeout(activateBubble, 1000);
         }
     }
+    function activateBubble() {
+        bubbleOn = true;
+    }
     function drawFishfood(_event) {
-        /*let food: Food = new A12.Food(_event);
-        food.draw();
-        bubblesArray.push(food);
-        */
+        for (let i = 0; i < 3 + Math.random() * 10; i++) {
+            let food = new A12.Food(_event);
+            //food.draw();
+            bubblesArray.push(food);
+            allArray.push(food);
+        }
+        console.log(allArray);
     }
     function update() {
         window.setTimeout(update, 1000 / fps);
         A12.crc.clearRect(0, 0, A12.canvas.width, A12.canvas.height);
         A12.crc.putImageData(imageData, 0, 0);
-        for (let i = 0; i < roundArray.length; i++) {
-            roundArray[i].update();
-            longArray[i].update();
-            edgyArray[i].update();
+        for (let i = 0; i < allArray.length; i++) {
+            allArray[i].update();
         }
-        for (let i = 0; i < bubblesArray.length; i++) {
-            bubblesArray[i].update();
-        }
+        /*
+            for (let i: number = 0; i < roundArray.length; i++) {
+                roundArray[i].update();
+                longArray[i].update();
+                edgyArray[i].update();
+    
+            }
+            for (let i: number = 0; i < bubblesArray.length; i++) {
+                bubblesArray[i].update();
+            }
+        */
     }
 })(A12 || (A12 = {}));
 //# sourceMappingURL=canvas.js.map

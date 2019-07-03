@@ -1,5 +1,5 @@
 namespace A12 {
-    export class Fish extends A12.MovingObjects {
+    export class Fish extends A12.MovingObject {
         faceRight: boolean;
                
         constructor() {
@@ -12,13 +12,8 @@ namespace A12 {
 
         move(): void {
             //;
-            this.x += this.dx;
-            this.y += this.dy;
+            super.move();
         }
 
-        update(): void {
-            this.move();
-            this.draw();
-        }
     }
 }

@@ -69,11 +69,7 @@ var A12;
             A12.crc.fillStyle = "black";
             A12.crc.fill(fish);
         }
-        update() {
-            this.move();
-            this.draw();
-        }
     }
     A12.FishEdgy = FishEdgy;
 })(A12 || (A12 = {}));
-//# sourceMappingURL=FishEdgy.js.map
+//# sourceMappingURL=fishEdgy.js.map

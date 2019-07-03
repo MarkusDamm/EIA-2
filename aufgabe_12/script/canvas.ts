@@ -4,12 +4,12 @@ namespace A12 {
 	export let canvas: HTMLCanvasElement;
 	let fps: number = 60;
 	let imageData: ImageData;
+	let allArray: MovingObject[] = [];
 	let roundArray: FishRound[] = [];
 	let longArray: FishLong[] = [];
 	let edgyArray: FishEdgy[] = [];
-	let bubblesArray: Bubbles[] = [];
+	let bubblesArray: Bubble[] = [];
 	let bubbleOn: boolean = true;
-	let bubbleCounter: number = 0;
 
 	function init(): void {
 		canvas = document.getElementsByTagName("canvas")[0];
@@ -35,8 +35,8 @@ namespace A12 {
 		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
 		crc.lineWidth = 1;
 
-		for (let i: number = 0; i < 300; i++) {
-			if (i % 40 == 0) {
+		for (let i: number = 0; i < 50; i++) {
+			if (i % 8 == 0) {
 				let roundFish: FishRound = new A12.FishRound();
 				//roundFish.draw();
 				roundArray.push(roundFish);
@@ -49,11 +49,15 @@ namespace A12 {
 				//edgyFish.draw();
 				edgyArray.push(edgyFish);
 
+				allArray.push(roundFish, longFish, edgyFish);
+
 			}
+			
 			let bubbles: Bubble = new A12.Bubble();
 			//bubbles.draw();
 			bubblesArray.push(bubbles);
-
+			allArray.push(bubbles);
+		
 		}
 
 		canvas.addEventListener("mousemove", drawBubble);
@@ -208,26 +212,29 @@ namespace A12 {
 	}
 
 	function drawBubble(_event: MouseEvent): void {
-		//window.setTimeout(drawBubble, 1000);
 		if (bubbleOn == true) {
 			let bubbles: Bubble = new A12.Bubble(_event);
-			bubbles.draw();
+			//bubbles.draw();
 			bubblesArray.push(bubbles);
+			allArray.push(bubbles);
 			bubbleOn = false;
+			window.setTimeout(activateBubble, 1000);
 		}
-		else {
-			bubbleCounter++;
-			if (bubbleCounter == 20)
-				bubbleOn = true;
-		}
-		
+	}
+
+	function activateBubble(): void {
+		bubbleOn = true;
 	}
 
 	function drawFishfood(_event: MouseEvent): void {
-		/*let food: Food = new A12.Food(_event);
-		food.draw();
-		bubblesArray.push(food);
-		*/
+		for (let i: number = 0; i < 3 + Math.random() * 10; i++) {
+			let food: Food = new A12.Food(_event);
+			//food.draw();
+			bubblesArray.push(food);
+			allArray.push(food);
+		}
+		console.log(allArray);
+		
 	}
 
 	function update(): void {
@@ -235,6 +242,11 @@ namespace A12 {
 		crc.clearRect(0, 0, canvas.width, canvas.height);
 		crc.putImageData(imageData, 0, 0);
 
+		for (let i: number = 0; i < allArray.length; i++) {
+			allArray[i].update();
+			
+		}
+	/*
 		for (let i: number = 0; i < roundArray.length; i++) {
 			roundArray[i].update();
 			longArray[i].update();
@@ -244,5 +256,6 @@ namespace A12 {
 		for (let i: number = 0; i < bubblesArray.length; i++) {
 			bubblesArray[i].update();
 		}
+	*/
 	}
 }

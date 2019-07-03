@@ -1,5 +1,5 @@
 namespace A12 {
-    export class Objects {
+    export class Object {
         x: number;
         y: number;
 

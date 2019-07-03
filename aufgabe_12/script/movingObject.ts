@@ -1,5 +1,5 @@
 namespace A12 {
-    export class MovingObjects extends A12.Objects {
+    export class MovingObject extends A12.Object {
         dx: number;
         dy: number;
                

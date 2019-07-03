@@ -1,6 +1,6 @@
 var A12;
 (function (A12) {
-    class Bubble extends A12.MovingObjects {
+    class Bubble extends A12.MovingObject {
         constructor(_event) {
             super();
             if (_event) {
@@ -36,4 +36,4 @@ var A12;
     }
     A12.Bubble = Bubble;
 })(A12 || (A12 = {}));
-//# sourceMappingURL=Bubble.js.map
+//# sourceMappingURL=bubble.js.map

@@ -1,5 +1,5 @@
 namespace A12 {
-    export class Bubble extends A12.MovingObjects {
+    export class Bubble extends A12.MovingObject {
         
         r: number;
 

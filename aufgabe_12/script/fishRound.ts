@@ -64,9 +64,5 @@ namespace A12 {
             crc.fill(fish);
         }
 
-        update(): void {
-            this.move();
-            this.draw();
-        }
     }
 }

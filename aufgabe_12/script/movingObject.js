@@ -1,6 +1,6 @@
 var A12;
 (function (A12) {
-    class MovingObjects extends A12.Objects {
+    class MovingObject extends A12.Object {
         constructor() {
             super();
         }
@@ -17,6 +17,6 @@ var A12;
             this.draw();
         }
     }
-    A12.MovingObjects = MovingObjects;
+    A12.MovingObject = MovingObject;
 })(A12 || (A12 = {}));
-//# sourceMappingURL=MovingObjects.js.map
+//# sourceMappingURL=movingObject.js.map
