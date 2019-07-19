@@ -7,8 +7,8 @@ namespace A12 {
         constructor(_event: MouseEvent) {
             super();
             
-            this.x = _event.x - 5.5 - Math.random() * 7;
-            this.y = _event.y - 5.5 - Math.random() * 7;
+            this.x = _event.pageX - 5.5 - Math.random() * 7;
+            this.y = _event.pageY - 5.5 - Math.random() * 7;
             this.startX = this.x;
             this.dy = 0.5 + Math.random() * 1.5;
             this.dx = 1 - Math.random() * 2;

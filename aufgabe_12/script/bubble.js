@@ -4,8 +4,8 @@ var A12;
         constructor(_event) {
             super();
             if (_event) {
-                this.x = _event.x - 9;
-                this.y = _event.y - 9;
+                this.x = _event.offsetX;
+                this.y = _event.offsetY;
             }
             else {
                 this.x = Math.random() * A12.canvas.width;
