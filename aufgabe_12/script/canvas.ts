@@ -5,9 +5,6 @@ namespace A12 {
 	let fps: number = 60;
 	let imageData: ImageData;
 	let allArray: MovingObject[] = [];
-	let roundArray: FishRound[] = [];
-	let longArray: FishLong[] = [];
-	let edgyArray: FishEdgy[] = [];
 	let bubblesArray: Bubble[] = [];
 	let bubbleOn: boolean = true;
 
@@ -39,16 +36,15 @@ namespace A12 {
 			if (i % 8 == 0) {
 				let roundFish: FishRound = new A12.FishRound();
 				//roundFish.draw();
-				roundArray.push(roundFish);
+				
 
 				let longFish: FishLong = new A12.FishLong();
 				//longFish.draw();
-				longArray.push(longFish);
+				
 
 				let edgyFish: FishEdgy = new A12.FishEdgy();
 				//edgyFish.draw();
-				edgyArray.push(edgyFish);
-
+				
 				allArray.push(roundFish, longFish, edgyFish);
 
 			}
@@ -218,7 +214,7 @@ namespace A12 {
 			bubblesArray.push(bubbles);
 			allArray.push(bubbles);
 			bubbleOn = false;
-			window.setTimeout(activateBubble, 1000);
+			window.setTimeout(activateBubble, 500);
 		}
 	}
 
